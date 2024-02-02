@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="674dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="420dp"
+        android:layout_height="534dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,6 +20,7 @@
             android:id="@+id/textview_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:rotationY="0"
             android:text="N/A"
             android:textAlignment="center" />
@@ -49,4 +51,5 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

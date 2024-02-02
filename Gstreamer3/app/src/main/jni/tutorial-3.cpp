@@ -180,7 +180,7 @@ app_function (void *userdata)
 
     /* Build pipeline */
     data->pipeline =
-            gst_parse_launch ("videotestsrc ! warptv ! videoconvert ! autovideosink",
+            gst_parse_launch ("udpsrc port=9999 name=udpsrc ! application/x-rtp,clock-rate=90000,payload=96 ! rtph264depay ! decodebin ! videoconvert ! autovideosink name=autovideosink",
                               &error);
     if (error) {
         gchar *message =
@@ -194,9 +194,11 @@ app_function (void *userdata)
     /* Set the pipeline to READY, so it can already accept a window handle, if we have one */
     gst_element_set_state (data->pipeline, GST_STATE_READY);
 
-    data->video_sink =
-            gst_bin_get_by_interface (GST_BIN (data->pipeline),
-                                      GST_TYPE_VIDEO_OVERLAY);
+    //data->video_sink =
+            //gst_bin_get_by_interface (GST_BIN (data->pipeline),
+                                      //GST_TYPE_VIDEO_OVERLAY);
+    data->video_sink = gst_bin_get_by_name(GST_BIN (data->pipeline), "autovideosink");
+
     if (!data->video_sink) {
         GST_ERROR ("Could not retrieve video sink");
         return NULL;
